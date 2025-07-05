@@ -79,7 +79,7 @@ router.post("/signup", async (req, res) => {
     const newUser = new User({ name, email, password: hash });
     await newUser.save();
 
-    const token = jwt.sign({ id: newUser._id }, "SECRET_KEY", { expiresIn: "1h" });
+    const token = jwt.sign({ id: newUser._id },process.env.SECRET_KEY , { expiresIn: "1h" });
 
     res.status(201).json({ token, user: newUser });
   } catch (err) {
@@ -99,7 +99,7 @@ router.post("/login", async (req, res) => {
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) return res.status(401).json({ message: "Invalid email or password" });
 
-    const token = jwt.sign({ id: user._id }, "SECRET_KEY", { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: "1h" });
 
     res.json({ token, user });
   } catch (err) {
