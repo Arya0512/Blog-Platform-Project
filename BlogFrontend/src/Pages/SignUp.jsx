@@ -14,7 +14,7 @@ export default function Signup() {
   const handleSignup = async(e) => {
     try{
     e.preventDefault();
-    const res=await axios.post("http://localhost:3000/api/blogs/signup",{
+    const res=await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/signup`,{
       name,email,password
     });
     

@@ -17,7 +17,7 @@ export default function EditBlog() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/blogs/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`);
         setFormData(res.data);
       } catch (err) {
         console.log("Error fetching blog:", err);

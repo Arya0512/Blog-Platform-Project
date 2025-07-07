@@ -10,7 +10,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/blogs");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`);
         setBlogs(res.data);
       } catch (err) {
         console.error("Error fetching blogs", err);
@@ -22,7 +22,7 @@ export default function HomePage() {
   const handleDelete=async(id)=>{
     if(window.confirm("are you sure you want to delete this blog ?"));{
       try{
-        await axios.delete(`http://localhost:3000/api/blogs/${id}`, {
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`
   }

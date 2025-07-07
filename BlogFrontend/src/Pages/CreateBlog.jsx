@@ -23,7 +23,7 @@ export default function CreateBlog(){
       event.preventDefault();
       const token=localStorage.getItem("token");
         try{
-          await axios.post("http://localhost:3000/api/blogs",formData,{
+          await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`,formData,{
             headers:{
               Authorization:`Bearer ${token}`,
             },
