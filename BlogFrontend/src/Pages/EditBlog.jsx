@@ -35,7 +35,7 @@ export default function EditBlog() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/blogs/${id}`, {
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`, {
         content: formData.content,
       }, {
   headers: {
