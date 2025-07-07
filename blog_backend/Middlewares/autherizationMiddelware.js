@@ -10,8 +10,8 @@ const authMiddleware = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, "SECRET_KEY"); // Ideally, use process.env.SECRET_KEY
-    req.userId = decoded.id; // Attach user ID to request object
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);  // ✅ FIXED
+    req.userId = decoded.id;
     next(); 
   } catch (err) {
     return res.status(401).json({ message: "Invalid or expired token" });
@@ -19,3 +19,4 @@ const authMiddleware = (req, res, next) => {
 };
 
 module.exports = authMiddleware;
+
