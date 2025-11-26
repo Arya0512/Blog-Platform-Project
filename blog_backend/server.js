@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const blogRoutes = require("./routes/blogRoutes"); 
+const authRoutes=require("./routes/auth");
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.use("/api/blogs", blogRoutes); 
+app.use("/api/auth",authRoutes);
 app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
